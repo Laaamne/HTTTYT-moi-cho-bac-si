@@ -1,4 +1,4 @@
-// Biến toàn cục để lưu thông tin chỉnh sửa
+// Biến toàn cục để lưu thông tin chỉnh sửa 
 let patientProfile = {
     id: "12345", // Thêm trường ID bệnh nhân
     name: "Nguyễn Văn A",
@@ -109,4 +109,12 @@ document.getElementById("appointments-link").addEventListener("click", function(
             <p>Ngày hẹn khám: ${patientAppointment.date}</p>
         `;
     });
+});
+
+// Hiển thị Tin nhắn chờ
+document.getElementById("messages-link").addEventListener("click", function() {
+    document.getElementById("content").innerHTML = `
+        <h2>Tin nhắn chờ</h2>
+        <p>Không có tin nhắn chờ.</p>
+    `;
 });
