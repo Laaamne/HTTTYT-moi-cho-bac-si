@@ -1,120 +1,108 @@
-// Biến toàn cục để lưu thông tin chỉnh sửa 
-let patientProfile = {
-    id: "12345", // Thêm trường ID bệnh nhân
-    name: "Nguyễn Văn A",
-    dob: "1980-01-01",
-    gender: "Nam",
-    address: "123 Đường ABC, TP.HCM"
-};
+/* Định dạng chung */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 
-let patientCondition = {
-    condition: "Viêm phổi",
-    medicine: "Amoxicillin",
-    allergies: "Không có"
-};
+/* Màn hình đăng nhập */
+#login-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
 
-let patientAppointment = {
-    date: "2024-10-15"
-};
+h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
 
-// Xử lý đăng nhập
-document.getElementById("login-btn").addEventListener("click", function() {
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
+form {
+    display: flex;
+    flex-direction: column;
+}
 
-    if (username === "admin" && password === "1") {
-        document.getElementById("login-container").style.display = "none";
-        document.getElementById("main-container").style.display = "block";
-    } else {
-        document.getElementById("error-msg").textContent = "Tài khoản hoặc mật khẩu không đúng!";
-    }
-});
+label {
+    margin-bottom: 5px;
+    color: #555;
+}
 
-// Hiển thị và chỉnh sửa Hồ sơ bệnh nhân
-document.getElementById("profile-link").addEventListener("click", function() {
-    document.getElementById("content").innerHTML = `
-        <h2>Hồ sơ bệnh nhân</h2>
-        <label>ID bệnh nhân: </label><input type="text" id="id" value="${patientProfile.id}"><br>
-        <label>Họ và tên: </label><input type="text" id="name" value="${patientProfile.name}"><br>
-        <label>Ngày sinh: </label><input type="date" id="dob" value="${patientProfile.dob}"><br>
-        <label>Giới tính: </label><input type="text" id="gender" value="${patientProfile.gender}"><br>
-        <label>Địa chỉ: </label><input type="text" id="address" value="${patientProfile.address}"><br>
-        <button id="save-profile">Lưu</button>
-    `;
+input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
 
-    // Xử lý lưu hồ sơ bệnh nhân
-    document.getElementById("save-profile").addEventListener("click", function() {
-        patientProfile.id = document.getElementById("id").value; // Lưu ID bệnh nhân
-        patientProfile.name = document.getElementById("name").value;
-        patientProfile.dob = document.getElementById("dob").value;
-        patientProfile.gender = document.getElementById("gender").value;
-        patientProfile.address = document.getElementById("address").value;
-        alert("Thông tin hồ sơ đã được lưu!");
+button {
+    padding: 30px;
+    background-color: #2835a7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
-        // Cập nhật lại hiển thị với thông tin mới
-        document.getElementById("content").innerHTML = `
-            <h2>Hồ sơ bệnh nhân</h2>
-            <p>ID bệnh nhân: ${patientProfile.id}</p>
-            <p>Họ và tên: ${patientProfile.name}</p>
-            <p>Ngày sinh: ${patientProfile.dob}</p>
-            <p>Giới tính: ${patientProfile.gender}</p>
-            <p>Địa chỉ: ${patientProfile.address}</p>
-        `;
-    });
-});
+button:hover {
+    background-color: #214588;
+}
 
-// Hiển thị và chỉnh sửa Bệnh lý của bệnh nhân
-document.getElementById("conditions-link").addEventListener("click", function() {
-    document.getElementById("content").innerHTML = `
-        <h2>Bệnh lý của bệnh nhân</h2>
-        <label>Tên bệnh: </label><input type="text" id="condition" value="${patientCondition.condition}"><br>
-        <label>Tên thuốc: </label><input type="text" id="medicine" value="${patientCondition.medicine}"><br>
-        <label>Tiền sử dị ứng: </label><input type="text" id="allergies" value="${patientCondition.allergies}"><br>
-        <button id="save-condition">Lưu</button>
-    `;
+#error-msg {
+    margin-top: 10px;
+}
 
-    // Xử lý lưu bệnh lý của bệnh nhân
-    document.getElementById("save-condition").addEventListener("click", function() {
-        patientCondition.condition = document.getElementById("condition").value;
-        patientCondition.medicine = document.getElementById("medicine").value;
-        patientCondition.allergies = document.getElementById("allergies").value;
-        alert("Thông tin bệnh lý đã được lưu!");
+/* Giao diện chính */
+#main-container {
+    width: 80%;
+    margin-top: 20px;
+}
 
-        // Cập nhật lại hiển thị với thông tin mới
-        document.getElementById("content").innerHTML = `
-            <h2>Bệnh lý của bệnh nhân</h2>
-            <p>Tên bệnh: ${patientCondition.condition}</p>
-            <p>Tên thuốc: ${patientCondition.medicine}</p>
-            <p>Tiền sử dị ứng: ${patientCondition.allergies}</p>
-        `;
-    });
-});
+nav {
+    background-color: #007bff;
+    padding: 10px;
+    border-radius: 5px;
+}
 
-// Hiển thị và chỉnh sửa Lịch khám
-document.getElementById("appointments-link").addEventListener("click", function() {
-    document.getElementById("content").innerHTML = `
-        <h2>Lịch khám</h2>
-        <label>Ngày hẹn khám: </label><input type="date" id="appointment-date" value="${patientAppointment.date}"><br>
-        <button id="save-appointment">Lưu</button>
-    `;
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
 
-    // Xử lý lưu lịch khám
-    document.getElementById("save-appointment").addEventListener("click", function() {
-        patientAppointment.date = document.getElementById("appointment-date").value;
-        alert("Lịch hẹn khám đã được lưu!");
+nav ul li {
+    display: inline;
+}
 
-        // Cập nhật lại hiển thị với thông tin mới
-        document.getElementById("content").innerHTML = `
-            <h2>Lịch khám</h2>
-            <p>Ngày hẹn khám: ${patientAppointment.date}</p>
-        `;
-    });
-});
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px;
+}
 
-// Hiển thị Tin nhắn chờ
-document.getElementById("messages-link").addEventListener("click", function() {
-    document.getElementById("content").innerHTML = `
-        <h2>Tin nhắn chờ</h2>
-        <p>Không có tin nhắn chờ.</p>
-    `;
-});
+nav ul li a:hover {
+    background-color: #0056b3;
+    border-radius: 5px;
+}
+
+#content {
+    background-color: #fff;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    margin-top: 20px;
+}
